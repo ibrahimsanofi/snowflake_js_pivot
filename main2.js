@@ -1,4 +1,4 @@
-import { createConnection } from "/workspaces/snowflake_js_pivot/node_modules/snowflake-sdk/lib/snowflake.js";
+import { createConnection } from "/node_modules/snowflake-sdk/lib/snowflake.js";
 
 const connection = createConnection({
   account:'EMEA_DATA',
@@ -11,7 +11,7 @@ const connection = createConnection({
 
 connection.connect((err) => {
   if (err) {
-    console.log('Unbale to connect', err.message);
+    console.log('Unable to connect', err.message);
   }
   else {
     console.log("Succession to Snowflake ok");

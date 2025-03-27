@@ -11,7 +11,7 @@
 // Database
 // Schema
 
-import { post } from "/workspaces/snowflake_js_pivot/node_modules/axios/lib/axios.js";
+import { post } from "node_modules/axios/lib/axios.js";
 
 async function connectToSnowflake() {
   const account = 'EMEA_DATA';
