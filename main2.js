@@ -1,4 +1,4 @@
-import { createConnection } from './node_modules/snowflake-sdk/lib/snowflake.js';
+import { createConnection } from "/workspaces/snowflake_js_pivot/node_modules/snowflake-sdk/lib/snowflake.js";
 
 const connection = createConnection({
   account:'EMEA_DATA',
