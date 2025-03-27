@@ -4,9 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./main.js" type="module" defer></script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <script>
+        require.config({
+          paths: {
+            'snowflake-sdk': './node_modules/snowflake-sdk/lib/snowflake.js'
+          }
+        });
+
+        require(['snowflake-sdk'], function(snowflake){
+            // Create a Connection object that we can use later to connect.
+            var connection = snowflake.createConnection({
+                account: 'EMEA_DATA',
+                username: 'TECH_DCF_PROD_MONITOR_BI',
+                password: 'fRTuxK!G*Bhc|HL)|w(fgt~OMaA+8]P^ASdXtw[1',
+                warehouse: 'tech_dcf_prod_wh_monitor_bi_proc',
+                database: 'TECH_DCF_PROD',
+                schema: 'DMT_MONITOR'
+            });
+
+            // Connect to Snowflake
+            connection.connect((err, conn) => {
+                if (err) {
+                console.error('Unable to connect: ' + err.message);
+                } else {
+                console.log('Successfully connected to Snowflake.');
+                }
+            });
+
+            // Execute a simple query
+            connection.execute({
+                sqlText: 'SELECT DISTINCT project_name, environment, execution_date, status FROM tech_dcf_prod.dmt_monitor.ma_monitor_job_summary_status',
+                complete: (err, stmt, rows) => {
+                if (err) {
+                    console.error('Failed to execute statement due to the following error: ' + err.message);
+                } else {
+                    console.log('Successfully executed statement: ' + stmt.getSqlText());
+                    console.log('Rows: ', rows);
+                }
+                }
+            });
+
+            // Close connection
+            connection.destroy((err, conn) => {
+                if (err) {
+                console.error('Failed to close the connection: ' + err.message);
+                } else {
+                console.log('Connection closed.');
+                }
+            });
+        })
+      </script>
+    
 </head>
 <body>
-    
+    <!-- <script src="./main.js" type="module" defer></script> -->
 </body>
 </html>

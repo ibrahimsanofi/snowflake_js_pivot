@@ -1,4 +1,5 @@
 
+
 async function getSnowflakeData() {
     // Load the Snowflake Node.js driver.
     var snowflake = require('snowflake-sdk');
