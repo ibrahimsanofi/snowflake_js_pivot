@@ -1,4 +1,4 @@
-import { createConnection } from 'snowflake-sdk';
+import { createConnection } from './node_modules/snowflake-sdk';
 
 const connection = createConnection({
   account:'EMEA_DATA',
