@@ -33,7 +33,7 @@ async function connectToSnowflake() {
   };
 
   try {
-    const response = await axios.post(`https://${account}.snowflakecomputing.com/session/v1/login-request`, authData);
+    const response = await post(`https://${account}.snowflakecomputing.com/session/v1/login-request`, authData);
     const token = response.data.data.token;
 
     console.log('Successfully connected to Snowflake!');
